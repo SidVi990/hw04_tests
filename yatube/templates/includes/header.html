@@ -1,0 +1,62 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightskyblue">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'posts:index' %}">
+            <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span style="color:red">Ya</span>tube
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" style="width: 60px height: 20px">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="d-flex">
+            <ul class="nav nav-pills flex-column flex-lg-row"> 
+              {% with request.resolver_match.view_name as view_name %}
+              <li class="nav-item"> 
+                <a class="nav-link {% if view_name  == 'about:author' %}active{% endif %}" 
+                  href="{% url 'about:author' %}">Об авторе</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if view_name  == 'about:tech' %}active{% endif %}"
+                  href="{% url 'about:tech' %}">Технологии</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item"> 
+                <a class="nav-link {% if view_name  == 'posts:post_create' %}active{% endif %}"
+                  href="{% url 'posts:post_create' %}">Новая запись</a>
+              </li>
+              <li class="nav-item"> 
+                <a class="nav-link link-light {% if view_name  == 'users:password_reset_form' %}link-light active{% endif %}"
+                  href="{% url 'users:password_change' %}">Изменить пароль</a>
+              </li>
+              <li class="nav-item"> 
+                <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}"
+                  href="{% url 'users:logout' %}">Выйти</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light {% if view_name  == 'posts:profile' %}active{% endif %}"
+                 href="{% url 'posts:profile' user.username %}">Пользователь: {{ user.username }}</a>
+              </li>
+              {% else %}
+              <li class="nav-item"> 
+                <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}"
+                  href="{% url 'users:login' %}">Войти</a>
+              </li>
+              <li class="nav-item"> 
+                <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}"
+                  href="{% url 'users:signup' %}">Регистрация</a>
+              </li>
+              {% endif %}
+              {% endwith %} 
+            </ul>
+          </div>    
+        </div>
+    </div>
+  </nav>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}" 
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8">
+</script>
+</header>        

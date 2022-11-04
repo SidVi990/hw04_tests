@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Технологии{% endblock %}
+{% block content %}
+<div class="row">
+  <h1>Вот что помогло мне написать эту страницу</h1>
+  <aside class="col-12 col-md-3">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <img src="{% static 'img/Python.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <a href="https://www.python.org">Python</a> - это мощный язык программирования, 
+        на котором можно создавать самые разные приложения, не зависящие от платформы.
+      </li>
+      <li class="list-group-item">
+        <img src="{% static 'img/django.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <a href="https://www.djangoproject.com"></a>Django —  является чрезвычайно популярным и 
+        полнофункциональным серверным веб-фреймворком, написанным на Python. 
+        Проект поддерживается организацией Django Software Foundation.
+      </li>
+      <li class="list-group-item"> 
+        <img src="{% static 'img/html.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <a href="https://html.spec.whatwg.org/multipage/">HTML</a> - (HyperText Markup Language — «язык гипертекстовой разметки») — 
+        самый базовый строительный блок Веба. 
+        Он определяет содержание и структуру веб-контента.
+      </li>
+      <li class="list-group-item">
+        <img src="{% static 'img/bootstrap.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <a href="https://getbootstrap.com">Bootstrap</a> — Самая популярная библиотека HTML, CSS и JS в мире.
+      </li>
+    </ul>
+  </aside>
+  <article class="col-12 col-md-9">
+    <p>Проект создан в рамках обучения backend-разработке на платформе 
+      <a class="nav-link" href="https://practicum.yandex.ru"><u><span style="color:red">Я</span>ндекс практикум.</u></p>
+      В тех. задании говорилось: "Вы же программисты, сами понимаете, как лучше сделать", однако правда в том, что, обычно, как лучше знает 
+      <a href="https://www.google.com">гугл</a>.
+    </p>
+  </article>
+</div>
+{% endblock %} 
