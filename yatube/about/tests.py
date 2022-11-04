@@ -38,7 +38,7 @@ class AboutViewsTests(TestCase):
             reverse('about:author'): 'about/author.html',
             reverse('about:tech'): 'about/tech.html',
         }
-    
+
     def setUp(self):
         self.guest_client = Client()
 
