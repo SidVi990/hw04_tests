@@ -138,7 +138,7 @@ class PostPaginatorsTests(TestCase):
             slug='test-slug',
             description='Тестовое описание',
         )
-        cls.post = Post.objects.bulk_create(
+        cls.posts = Post.objects.bulk_create(
             [
                 Post(
                     text=f'Тестовый пост #{n}',

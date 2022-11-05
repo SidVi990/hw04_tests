@@ -67,6 +67,12 @@ class PostURLTests(TestCase):
         response = self.client.get('/unexisting_page/')
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
+    def test_edit_page_is_redirect_guest_user(self):
+        """Страница редактирования поста перенаправит
+            анонимного пользователя на страницу авторизации"""
+        response = self.guest_client.get('/posts/1/edit/', follow=True)
+        self.assertRedirects(response, ('/auth/login/?next=/posts/1/edit/'))
+
     def test_edit_page_is_available_only_to_the_author(self):
         """Страница редактирования поста доступна только автору"""
         self.user = User.objects.create_user(username='HasNoName')
@@ -74,3 +80,15 @@ class PostURLTests(TestCase):
         self.authorized_client.force_login(self.user)
         response = self.authorized_client.get('/posts/1/edit/', follow=True)
         self.assertRedirects(response, ('/posts/1/'))
+
+    def test_edit_page_template_for_authorized_user(self):
+        """Страница редактирования поста
+            для автора использует правильный щаблон"""
+        response = self.authorized_client.get('/posts/1/edit/', follow=True)
+        self.assertTemplateUsed(response, 'posts/create_post.html')
+
+    def test_create_page_is_available_only_to_authorized_user(self):
+        """Страница создания поста доступна только
+            зарегистрированному пользователю"""
+        response = self.guest_client.get('/create/', follow=True)
+        self.assertRedirects(response, ('/auth/login/?next=/create/'))

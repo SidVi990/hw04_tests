@@ -1,8 +1,7 @@
 from django.core.paginator import Paginator
-
-from yatube.settings import MAX_POSTS
+from django.conf import settings
 
 
 def pagination(request, posts):
-    paginator = Paginator(posts, MAX_POSTS)
+    paginator = Paginator(posts, settings.MAX_POSTS)
     return paginator.get_page(request.GET.get('page'))
